@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Pro — Автоматическая рассылка</title>
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>📱 WhatsApp Pro</h1>
+      <div class="status-indicator">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Ждём подключения...</span>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="stat-card">
+        <p>Отправлено</p>
+        <h2 id="total-sent">0</h2>
+      </div>
+      <div class="stat-card">
+        <p>Конверсия</p>
+        <h2 id="conversion-rate">0%</h2>
+      </div>
+    </section>
+
+    <section class="client-section">
+  <h2>Добавить клиентов</h2>
+  <textarea id="phone-input" placeholder="Вставьте номера по одному или списком:
++79991234567
+79991234567
++7 (999) 123-45-67
+89991234567
+
+Поддерживаются: переносы, запятые, точки, табы, пробелы" 
+  rows="6" 
+  style="width: 100%; padding: 16px; border: none; border-radius: 12px; background: #1a1a2e; color: white; font-size: 16px; margin-bottom: 12px;"></textarea>
+  <button id="add-client-btn" class="btn btn-primary">➕ Добавить всех</button>
+</section>
+
+    <section class="accounts-section">
+      <h2>Аккаунты WhatsApp</h2>
+      <div id="accounts-list">
+        <p class="empty-message">Нет аккаунтов. Добавьте первый.</p>
+      </div>
+      <button id="add-account-btn" class="btn btn-green">➕ Добавить аккаунт</button>
+    </section>
+
+    <section class="controls">
+  <button id="send-kp-btn" class="btn btn-orange">📤 Отправить КП всем</button>
+  <button id="check-status-btn" class="btn btn-blue">🔍 Проверить статус</button>
+</section>
+
+<!-- НОВЫЙ БЛОК: РАСПИСАНИЕ С НАЧАЛОМ И КОНЦОМ -->
+<section class="schedule-section" style="margin-top: 32px; padding: 16px; background: #1a1a2e; border-radius: 16px; border-left: 4px solid #6c5ce7;">
+  <h2>⏰ Автоматическая рассылка</h2>
+  <div style="display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px;">
+      <label style="display: block; color: #8d8d9c; font-size: 14px; margin-bottom: 4px;">Начало</label>
+      <input type="time" id="schedule-start" value="09:00" style="width: 100%; padding: 10px; border-radius: 8px; border: none;">
+    </div>
+    <div style="flex: 1; min-width: 140px;">
+      <label style="display: block; color: #8d8d9c; font-size: 14px; margin-bottom: 4px;">Конец</label>
+      <input type="time" id="schedule-end" value="18:00" style="width: 100%; padding: 10px; border-radius: 8px; border: none;">
+    </div>
+    <button id="toggle-schedule" class="btn btn-green" style="min-width: 160px; align-self: flex-end;">
+      ▶️ Включить расписание
+    </button>
+  </div>
+  <p style="color: #8d8d9c; font-size: 14px; margin-top: 8px;">
+    Система будет открывать чаты и вставлять текст КП <strong>только в указанном диапазоне времени</strong>.<br>
+    Рассылка происходит <strong>один раз в день</strong> — даже если вы откроете страницу несколько раз.<br>
+    За 5 минут до старта — вы получите уведомление в Telegram.
+  </p>
+</section>
+
+    <section class="log-section">
+      <h2>Последние действия</h2>
+      <div id="log-list">
+        <p class="empty-message">Нет действий.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Работает через Google Sheets • Без установки • Только браузер</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="service-worker.js"></script>
+</body>
+</html>
